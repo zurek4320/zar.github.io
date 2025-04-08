@@ -2,19 +2,20 @@ body {
     font-family: sans-serif;
     margin: 0;
     padding: 0;
-    background: #f9f9f9;
-    color: #333;
+    background: #333333;
+    color: #f9f9f9;
   }
   
   header {
-    background: #222;
-    color: white;
+    background: #f58a18;
+    color: black;
     padding: 1rem;
     text-align: center;
   }
   
   nav a {
-    color: white;
+    font-family: sans-serif;
+    color: black;
     margin: 0 15px;
     text-decoration: none;
   }
@@ -32,9 +33,9 @@ body {
   }
   
   .button {
-    background: #3498db;
+    background: #f58a18;
     padding: 12px 20px;
-    color: white;
+    color: #000000;
     text-decoration: none;
     border-radius: 8px;
     display: inline-block;
