@@ -16,32 +16,95 @@
 
   <main>
     <h2>Welcome to Zar</h2>
-    <p>Zar is a fun, minimal scripting language built with Python. Great for learning how interpreters work!</p>
+    <p>Zar is a fun (I hope), minimal scripting language with a retro style, built using Python.  
+    Why is it called ZAR?  
+    I reversed the word "ram" and changed the M to a Z because my nickname is Żurek  
+    (by the way, that's the name of a traditional Polish soup).</p>
 
     <section id="features">
       <h3>Features</h3>
       <ul>
         <li>Simple syntax</li>
         <li>Built-in GUI support</li>
-        <li>Custom interpreter in Python</li>
+        <li>Custom interpreter written in Python</li>
       </ul>
     </section>
 
     <section id="download">
       <h3>Download Zar</h3>
       <p>Get the latest version of the Zar interpreter from itch.io below:</p>
-      <a class="button" href="https://zureczek.itch.io/zar" target="_blank">⬇ 64bit windows version</a>
+      <a class="button" href="https://zureczek.itch.io/zar" target="_blank">⬇ 64-bit Windows version</a>
     </section>
 
     <section id="docs">
       <h3>Documentation</h3>
       <p><strong>Variables</strong></p>
       <pre>
-// making int variables
-set int var1 : 27
-// making str variables
-set str var2 : "some text"
+// setting string variable "text" to "Some text"
+set str text : "Some text"
+// setting integer variable "number" to 17
+set int number : 17
+// setting integer variable "LengthOfText" to the length of variable "text"
+set int LengthOfText : $ text
       </pre>
+
+      <p><strong>"Hello, World!" program</strong></p>
+      <pre>
+// setting string variable "msg" to "Hello, World!"
+set str msg : "Hello, World!"
+// setting integer variable "MsgLen" to the length of variable "msg"
+set int MsgLen : $ msg
+
+// adding 1 to integer variable "MsgLen"
+add MsgLen, 1
+
+// writing value of string variable "msg"
+write msg, MsgLen
+
+// write arg1, arg2
+// arg1 - text from variable
+// arg2 (last argument) - length of the message written to the console
+      </pre>
+
+      <p><strong>Compare</strong></p>
+      <pre>
+// the compare command works like a basic if statement:
+// if var1 != var2, it skips one line of code
+set str msg : "x == y!"
+set int MsgLen : $ msg
+
+add MsgLen, 1
+
+set int x : 1
+set int y : 1
+
+// if x == y, the program will write "x == y!\n"
+
+compare x | y
+write msg, MsgLen
+      </pre>
+      
+      <p><strong>Input and "what's your name" program</strong></p>
+      <pre>
+set str ASK_MSG : "What is your name?"
+set int ASK_MSG_LEN : $ ASK_MSG
+
+set str msg : "name"
+
+write ASK_MSG, ASK_MSG_LEN
+read msg
+
+set str hello_msg : "Hello, "
+
+add hello_msg, msg
+add hello_msg, "!"
+
+set int MsgLen : $ hello_msg
+add MsgLen, 1
+
+write hello_msg, msg, MsgLen
+      </pre>
+          
       <p><strong>Simple calculator app</strong></p>
       <pre>
 // messages
@@ -49,7 +112,7 @@ set str MSG1 : "Select first number."
 set str MSG2 : "Select second number."
 set str MSG3 : "Select operator (+,-,*,/)"
 
-// length of messages
+// lengths of messages
 set int MSG1LEN : $ MSG1
 set int MSG2LEN : $ MSG2
 set int MSG3LEN : $ MSG3
@@ -65,7 +128,7 @@ read op
 set int num1 : /num1
 set int num2 : /num2
 
-// getting right section
+// branching based on operator
 compare op | "+"
 jmp plus
 compare op | "-"
@@ -94,7 +157,7 @@ division:
 end:
     set str output : /num1
     set int len : $ output
-    write output, len.
+    write output, len
       </pre>
     </section>
   </main>
@@ -102,5 +165,7 @@ end:
   <footer>
     <p>&copy; 2025 Zar Language Project</p>
   </footer>
+  
+  
 </body>
 </html>
