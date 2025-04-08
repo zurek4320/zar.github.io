@@ -104,7 +104,29 @@ add MsgLen, 1
 
 write hello_msg, msg, MsgLen
       </pre>
-          
+      
+      <p><strong>Jmp loops</strong></p>
+      <pre>
+set str msg : "Hello";
+set int count : 0;
+
+// how much do jmp loop will take times to end
+set int count_end : 3;
+
+loop:
+write msg, 5;
+
+add count, 1;
+compare count | count_end;
+
+jmp end;
+jmp loop;
+
+end:
+set str msg : "end";
+write msg, 3;
+      </pre> 
+      
       <p><strong>Simple calculator app</strong></p>
       <pre>
 // messages
