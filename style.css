@@ -1,44 +1,54 @@
 body {
-    font-family: sans-serif;
-    margin: 0;
-    padding: 0;
-    background: #333333;
-    color: #f9f9f9;
-  }
-  
-  header {
-    background: #f58a18;
-    color: black;
-    padding: 1rem;
-    text-align: center;
-  }
-  
-  nav a {
-    font-family: sans-serif;
-    color: black;
-    margin: 0 15px;
-    text-decoration: none;
-  }
-  
-  main {
-    padding: 2rem;
-  }
-  
-  section {
-    margin-top: 2rem;
-  }
-  
-  ul {
-    line-height: 1.6;
-  }
-  
-  .button {
-    background: #f58a18;
-    padding: 12px 20px;
-    color: #000000;
-    text-decoration: none;
-    border-radius: 8px;
-    display: inline-block;
-    margin-top: 10px;
-  }
-  
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #333333;
+  color: #f9f9f9;
+}
+
+header {
+  background: #f58a18;
+  color: black;
+  padding: 1rem;
+  text-align: center;
+}
+
+nav a {
+  font-family: sans-serif;
+  color: black;
+  margin: 0 15px;
+  text-decoration: none;
+}
+
+main {
+  padding: 2rem;
+}
+
+section {
+  margin-top: 2rem;
+}
+
+ul {
+  line-height: 1.6;
+}
+
+.button {
+  background: #f58a18;
+  padding: 12px 20px;
+  color: #000000;
+  text-decoration: none;
+  border-radius: 8px;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+pre {
+background-color: #1e1e1e; /* dark background for contrast */
+padding: 1rem;
+border-radius: 12px;
+overflow-x: auto;
+font-family: monospace;
+color: #f1f1f1;
+margin-top: 1rem;
+box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
