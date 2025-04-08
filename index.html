@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Zar Programming Language</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Zar</h1>
+    <nav>
+      <a href="#features">Features</a>
+      <a href="#docs">Docs</a>  <!-- Link to docs section -->
+    </nav>
+  </header>
+
+  <main>
+    <h2>Welcome to Zar</h2>
+    <p>Zar is a fun, minimal scripting language built with Python. Great for learning how interpreters work!</p>
+
+    <section id="features">
+      <h3>Features</h3>
+      <ul>
+        <li>Simple syntax</li>
+        <li>Built-in GUI support</li>
+        <li>Custom interpreter in Python</li>
+      </ul>
+    </section>
+
+    <section id="download">
+      <h3>Download Zar</h3>
+      <p>Get the latest version of the Zar interpreter below:</p>
+      <a class="button" href="download/zar.py" download>⬇ Download zar.py</a>
+    </section>
+
+    <section id="docs">
+      <h3>Documentation</h3>
+      <p><strong>Here is the documentation for Zar:</strong></p>
+      
+      <!-- Add your documentation here -->
+      <pre>
+      // messages
+      set str MSG1 : "Select first number."
+      set str MSG2 : "Select second number."
+      set str MSG3 : "Select operator (+,-,*,/)"
+
+      // length of messages
+      set int MSG1LEN : $ MSG1
+      set int MSG2LEN : $ MSG2
+      set int MSG3LEN : $ MSG3
+
+      // getting numbers and operator
+      write MSG1, MSG1LEN
+      read num1
+      write MSG2, MSG2LEN
+      read num2
+      write MSG3, MSG3LEN
+      read op
+
+      set int num1 : /num1
+      set int num2 : /num2
+
+      // getting right section
+      compare op | "+"
+      jmp plus
+      compare op | "-"
+      jmp minus
+      compare op | "*"
+      jmp multiplication
+      compare op | "/"
+      jmp division
+      jmp end
+
+      plus:
+          add num1, num2
+          jmp end
+
+      minus:
+          sub num1, num2
+          jmp end
+
+      multiplication:
+          mul num1, num2
+          jmp end
+
+      division:
+          div num1, num2
+
+      end:
+          set str output : /num1
+          set int len : $ output
+          write output, len.
+      </pre>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Zar Language Project</p>
+  </footer>
+</body>
+</html>
