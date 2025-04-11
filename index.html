@@ -39,149 +39,279 @@
 
     <section id="docs">
       <h3>Documentation</h3>
-      <p><strong>Variables</strong></p>
-      <pre>
-// setting string variable "text" to "Some text"
-set str text : "Some text"
-// setting integer variable "number" to 17
-set int number : 17
-// setting integer variable "LengthOfText" to the length of variable "text"
-set int LengthOfText : $ text
-      </pre>
+    
+      <details>
+        <summary><strong><orange>Basics</orange></strong></summary>
+    
+        <details>
+          <summary>Variables</summary>
+          <pre>
+    // setting string variable "text" to "Some text"
+    set str text : "Some text"
+    // setting integer variable "number" to 17
+    set int number : 17
+    // setting integer variable "LengthOfText" to the length of variable "text"
+    set int LengthOfText : $ text
+          </pre>
+        </details>
+    
+        <details>
+          <summary>"Hello, World!" Program</summary>
+          <pre>
+    set str msg : "Hello, World!"
+    set int MsgLen : $ msg
+    add MsgLen, 1
+    write msg, MsgLen
+          </pre>
+        </details>
+    
+        <details>
+          <summary>Compare</summary>
+          <pre>
+    set str msg : "x == y!"
+    set int MsgLen : $ msg
+    add MsgLen, 1
+    set int x : 1
+    set int y : 1
+    compare x | y
+    write msg, MsgLen
+          </pre>
+        </details>
+    
+        <details>
+          <summary>What's Your Name (Input)</summary>
+          <pre>
+    set str ASK_MSG : "What is your name?"
+    set int ASK_MSG_LEN : $ ASK_MSG
+    set str msg : "name"
+    write ASK_MSG, ASK_MSG_LEN
+    read msg
+    set str hello_msg : "Hello, "
+    add hello_msg, msg
+    add hello_msg, "!"
+    set int MsgLen : $ hello_msg
+    add MsgLen, 1
+    write hello_msg, msg, MsgLen
+          </pre>
+        </details>
+    
+        <details>
+          <summary>Jump Loops</summary>
+          <pre>
+    set str msg : "Hello";
+    set int count : 0;
+    set int count_end : 3;
+    
+    loop:
+    write msg, 5;
+    add count, 1;
+    compare count | count_end;
+    jmp end;
+    jmp loop;
+    
+    end:
+    set str msg : "end";
+    write msg, 3;
+          </pre>
+        </details>
+    
+        <details>
+          <summary>Simple Calculator</summary>
+          <pre>
+    // messages
+    set str MSG1 : "Select first number."
+    set str MSG2 : "Select second number."
+    set str MSG3 : "Select operator (+,-,*,/)"
+    
+    set int MSG1LEN : $ MSG1
+    set int MSG2LEN : $ MSG2
+    set int MSG3LEN : $ MSG3
+    
+    write MSG1, MSG1LEN
+    read num1
+    write MSG2, MSG2LEN
+    read num2
+    write MSG3, MSG3LEN
+    read op
+    
+    set int num1 : /num1
+    set int num2 : /num2
+    
+    compare op | "+"
+    jmp plus
+    compare op | "-"
+    jmp minus
+    compare op | "*"
+    jmp multiplication
+    compare op | "/"
+    jmp division
+    jmp end
+    
+    plus:
+        add num1, num2
+        jmp end
+    
+    minus:
+        sub num1, num2
+        jmp end
+    
+    multiplication:
+        mul num1, num2
+        jmp end
+    
+    division:
+        div num1, num2
+    
+    end:
+        set str output : /num1
+        set int len : $ output
+        write output, len
+          </pre>
+        </details>
+    
+      </details>
+    
+      <details>
+          <summary><strong><orange>File Management</orange></strong></summary>
+          <details>
+            <summary>Reading Files</summary>
+            <pre>
+// setting variable msg to text from file "text file.txt"
+set str msg : file("text file.txt")
 
-      <p><strong>"Hello, World!" program</strong></p>
-      <pre>
-// setting string variable "msg" to "Hello, World!"
+set int MsgLen : $ msg
+sub MsgLen, 1
+
+write msg, MsgLen
+            </pre>
+          </details>
+          <details>
+            <summary>Making Files</summary>
+            <pre>
+// if file "src/text file.txt" already exist then text in it will be changed
+set str text : "new text"
+file.new "src/text file.txt" | text
+            </pre>
+          </details>
+          <details>
+            <summary>Adding New Line</summary>
+            <pre>
+// this code will add new line to file "cool file.py"
+set str text : "print('Hello, World!')"
+fileln "cool file.py" | text
+            </pre>
+          </details>
+      </details>
+    </section>  
+    <section id ="libraries">
+      <h3>Working With Libraries</h3>
+      <details>
+        <summary><strong><orange>Time</orange></strong></summary>
+          <pre>
+// imports time library
+import time
+
+// waits 3 seconds
+wait 3
+
+set str msg : "Hello"
+set int MsgLen : $ msg
+sub MsgLen, 1
+write msg, MsgLen
+          </pre>
+    </details>
+      <details>
+        <summary><strong><orange>OS</orange></strong></summary>
+          <details>
+            <summary>cls/clear</summary>
+            <pre>
+// importing os library
+import os
+
+set str msg : "Hello 1"
+set int MsgLen : $ msg
+write msg, MsgLen
+
+// clearing screen (works only on windows, use "clear" for linux)
+cls
+
+set str msg : "Hello 2"
+set int MsgLen : $ msg
+write msg, MsgLen
+            </pre>
+          </details>
+          <details>
+            <summary>Windows+Linux "clear screen" Command</summary>
+            <pre>
+// importing os and platform libraries
+import os
+import platform
+
+set str msg : "Hello 1"
+set int MsgLen : $ msg
+write msg, MsgLen
+
+// this command clears screen regardless of the operating system (windows/linux)
+platform.system(clear screen)
+
+set str msg : "Hello 2"
+set int MsgLen : $ msg
+write msg, MsgLen
+            </pre>
+          </details>
+    </details>
+      <details>
+        <summary><strong><orange>CustomTkinter</orange></strong></summary>
+          <details>
+            <summary>Making A Window</summary>
+            <pre>
+import customtkinter
+
+//           width height       title 
+window.create(400 | 300, "My First ZAR GUI")
+window.mainloop
+            </pre>
+          </details>
+          <details>
+            <summary>Making Label</summary>
+            <pre>
+import customtkinter
+
+set int x : 200
+set int y : 200
 set str msg : "Hello, World!"
-// setting integer variable "MsgLen" to the length of variable "msg"
-set int MsgLen : $ msg
 
-// adding 1 to integer variable "MsgLen"
-add MsgLen, 1
+window.create(400 | 400, "GUI Labels")
 
-// writing value of string variable "msg"
-write msg, MsgLen
+//          id  x   y  text
+label.create(1, x | y, msg)
 
-// write arg1, arg2
-// arg1 - text from variable
-// arg2 (last argument) - length of the message written to the console
-      </pre>
+window.mainloop
+            </pre>
+          </details>
+          <details>
+            <summary>Changing Labels Text</summary>
+            <pre>
+import customtkinter
+// to use "label.change_after" you need to import time
+import time
 
-      <p><strong>Compare</strong></p>
-      <pre>
-// the compare command works like a basic if statement:
-// if var1 != var2, it skips one line of code
-set str msg : "x == y!"
-set int MsgLen : $ msg
+set int x : 100
+set int y : 60
+set str msg : "Waiting..."
+set str msg2 : "Changed!"
 
-add MsgLen, 1
+window.create(400 | 300, "Auto Update Label")
+label.create(1, x | y, msg)
 
-set int x : 1
-set int y : 1
+// changing label id  text  after x time
+label.change_after(1, msg2, 3)
 
-// if x == y, the program will write "x == y!\n"
+window.mainloop
 
-compare x | y
-write msg, MsgLen
-      </pre>
-      
-      <p><strong>Input and "what's your name" program</strong></p>
-      <pre>
-set str ASK_MSG : "What is your name?"
-set int ASK_MSG_LEN : $ ASK_MSG
-
-set str msg : "name"
-
-write ASK_MSG, ASK_MSG_LEN
-read msg
-
-set str hello_msg : "Hello, "
-
-add hello_msg, msg
-add hello_msg, "!"
-
-set int MsgLen : $ hello_msg
-add MsgLen, 1
-
-write hello_msg, msg, MsgLen
-      </pre>
-      
-      <p><strong>Jmp loops</strong></p>
-      <pre>
-set str msg : "Hello";
-set int count : 0;
-
-// how much do jmp loop will take times to end
-set int count_end : 3;
-
-loop:
-write msg, 5;
-
-add count, 1;
-compare count | count_end;
-
-jmp end;
-jmp loop;
-
-end:
-set str msg : "end";
-write msg, 3;
-      </pre> 
-      
-      <p><strong>Simple calculator app</strong></p>
-      <pre>
-// messages
-set str MSG1 : "Select first number."
-set str MSG2 : "Select second number."
-set str MSG3 : "Select operator (+,-,*,/)"
-
-// lengths of messages
-set int MSG1LEN : $ MSG1
-set int MSG2LEN : $ MSG2
-set int MSG3LEN : $ MSG3
-
-// getting numbers and operator
-write MSG1, MSG1LEN
-read num1
-write MSG2, MSG2LEN
-read num2
-write MSG3, MSG3LEN
-read op
-
-set int num1 : /num1
-set int num2 : /num2
-
-// branching based on operator
-compare op | "+"
-jmp plus
-compare op | "-"
-jmp minus
-compare op | "*"
-jmp multiplication
-compare op | "/"
-jmp division
-jmp end
-
-plus:
-    add num1, num2
-    jmp end
-
-minus:
-    sub num1, num2
-    jmp end
-
-multiplication:
-    mul num1, num2
-    jmp end
-
-division:
-    div num1, num2
-
-end:
-    set str output : /num1
-    set int len : $ output
-    write output, len
-      </pre>
+            </pre>
+          </details>
+    </details>
     </section>
   </main>
 
