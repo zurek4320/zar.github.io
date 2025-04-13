@@ -1,185 +1,179 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Zar Programming Language</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="ZAR.png" type="image/x-icon" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-</head>
-<body>
-  <header>
-    <h1>Zar</h1>
-    <nav>
-      <a href="#features">Features</a>
-      <a href="#docs">Docs</a>
-      <a href="#download">Download</a>
-    </nav>
-  </header>
 
-  <main>
-    <section class="intro">
-      <h2>Welcome to Zar</h2>
-      <p>Zar is a fun (I hope), minimal scripting language with a retro style, built using Python.</p>
-      <p><strong>Why is it called ZAR?</strong><br>
-      I reversed the word "ram" and changed the M to a Z because my nickname is Żurek (btw, it's a Polish soup).</p>
-    </section>
+<html lang="en">  
+<head>  
+  <meta charset="UTF-8">  
+  <title>Zar Programming Language</title>  
+  <link rel="stylesheet" href="style.css">  
+  <link rel="icon" href="ZAR.png" type="image/x-icon">  
+</head>  
+<body>  
+  <header>  
+    <h1>Zar</h1>  
+    <nav>  
+      <a href="#features"><strong>Features</strong></a>  
+      <a href="#docs"><strong>Docs</strong></a>  
+    </nav>  
+  </header>    <main>  
+    <h2>Welcome to Zar</h2>  
+    <p>Zar is a fun (I hope), minimal scripting language with a retro style, built using Python.    
+    Why is it called ZAR?    
+    I reversed the word "ram" and changed the M to a Z because my nickname is Żurek    
+    (by the way, that's the name of a traditional Polish soup).</p>  <section id="features">  
+  <h3>Features</h3>  
+  <ul>  
+    <li>Simple syntax</li>  
+    <li>Built-in GUI support</li>  
+    <li>Custom interpreter written in Python</li>  
+  </ul>  
+</section>  
 
-    <section id="features">
-      <h3>Features</h3>
-      <ul>
-        <li>Simple syntax</li>
-        <li>Built-in GUI support</li>
-        <li>Custom interpreter written in Python</li>
-      </ul>
-    </section>
+<section id="download">  
+  <h3>Download Zar</h3>  
+  <p>Get the latest version of the Zar interpreter from itch.io below:</p>  
+  <a class="button" href="https://zureczek.itch.io/zar" target="_blank">⬇ 64-bit Windows version</a>  
+</section>  
 
-    <section id="download">
-      <h3>Download Zar</h3>
-      <p>Get the latest version of the Zar interpreter:</p>
-      <a class="button" href="https://zureczek.itch.io/zar" target="_blank">⬇ Download 64-bit Windows</a>
-    </section>
+<section id="docs">  
+  <h3>Documentation</h3>  
+  
+  <details>  
+    <summary><strong><orange>Basics</orange></strong></summary>  
+  
+    <details>  
+      <summary>Variables</summary>  
+      <pre>  
+// setting string variable "text" to "Some text"  
+set str text : "Some text"  
+// setting integer variable "number" to 17  
+set int number : 17  
+// setting integer variable "LengthOfText" to the length of variable "text"  
+set int LengthOfText : $ text  
+      </pre>  
+    </details>  
+  
+    <details>  
+      <summary>"Hello, World!" Program</summary>  
+      <pre>  
+set str msg : "Hello, World!"  
+set int MsgLen : $ msg  
+add MsgLen, 1  
+write msg, MsgLen  
+      </pre>  
+    </details>  
+  
+    <details>  
+      <summary>Compare</summary>  
+      <pre>  
+set str msg : "x == y!"  
+set int MsgLen : $ msg  
+add MsgLen, 1  
+set int x : 1  
+set int y : 1  
+compare x | y  
+write msg, MsgLen  
+      </pre>  
+    </details>  
+  
+    <details>  
+      <summary>What's Your Name (Input)</summary>  
+      <pre>  
+set str ASK_MSG : "What is your name?"  
+set int ASK_MSG_LEN : $ ASK_MSG  
+set str msg : "name"  
+write ASK_MSG, ASK_MSG_LEN  
+read msg  
+set str hello_msg : "Hello, "  
+add hello_msg, msg  
+add hello_msg, "!"  
+set int MsgLen : $ hello_msg  
+add MsgLen, 1  
+write hello_msg, msg, MsgLen  
+      </pre>  
+    </details>  
+  
+    <details>  
+      <summary>Jump Loops</summary>  
+      <pre>  
+set str msg : "Hello";  
+set int count : 0;  
+set int count_end : 3;  
+  
+loop:  
+write msg, 5;  
+add count, 1;  
+compare count | count_end;  
+jmp end;  
+jmp loop;  
+  
+end:  
+set str msg : "end";  
+write msg, 3;  
+      </pre>  
+    </details>  
+  
+    <details>  
+      <summary>Simple Calculator</summary>  
+      <pre>  
+// messages  
+set str MSG1 : "Select first number."  
+set str MSG2 : "Select second number."  
+set str MSG3 : "Select operator (+,-,*,/)"  
+  
+set int MSG1LEN : $ MSG1  
+set int MSG2LEN : $ MSG2  
+set int MSG3LEN : $ MSG3  
+  
+write MSG1, MSG1LEN  
+read num1  
+write MSG2, MSG2LEN  
+read num2  
+write MSG3, MSG3LEN  
+read op  
+  
+set int num1 : /num1  
+set int num2 : /num2  
+  
+compare op | "+"  
+jmp plus  
+compare op | "-"  
+jmp minus  
+compare op | "*"  
+jmp multiplication  
+compare op | "/"  
+jmp division  
+jmp end  
+  
+plus:  
+    add num1, num2  
+    jmp end  
+  
+minus:  
+    sub num1, num2  
+    jmp end  
+  
+multiplication:  
+    mul num1, num2  
+    jmp end  
+  
+division:  
+    div num1, num2  
+  
+end:  
+    set str output : /num1  
+    set int len : $ output  
+    write output, len  
+      </pre>  
+    </details>  
+  
+  </details>  
+  
+  <details>  
+      <summary><strong><orange>File Management</orange></strong></summary>  
+      <details>  
+        <summary>Reading Files</summary>  
+        <pre>
 
-    <section id="docs">
-      <h3>Documentation</h3>
-    
-      <details>
-        <summary><strong><orange>Basics</orange></strong></summary>
-    
-        <details>
-          <summary>Variables</summary>
-          <pre>
-    // setting string variable "text" to "Some text"
-    set str text : "Some text"
-    // setting integer variable "number" to 17
-    set int number : 17
-    // setting integer variable "LengthOfText" to the length of variable "text"
-    set int LengthOfText : $ text
-          </pre>
-        </details>
-    
-        <details>
-          <summary>"Hello, World!" Program</summary>
-          <pre>
-    set str msg : "Hello, World!"
-    set int MsgLen : $ msg
-    add MsgLen, 1
-    write msg, MsgLen
-          </pre>
-        </details>
-    
-        <details>
-          <summary>Compare</summary>
-          <pre>
-    set str msg : "x == y!"
-    set int MsgLen : $ msg
-    add MsgLen, 1
-    set int x : 1
-    set int y : 1
-    compare x | y
-    write msg, MsgLen
-          </pre>
-        </details>
-    
-        <details>
-          <summary>What's Your Name (Input)</summary>
-          <pre>
-    set str ASK_MSG : "What is your name?"
-    set int ASK_MSG_LEN : $ ASK_MSG
-    set str msg : "name"
-    write ASK_MSG, ASK_MSG_LEN
-    read msg
-    set str hello_msg : "Hello, "
-    add hello_msg, msg
-    add hello_msg, "!"
-    set int MsgLen : $ hello_msg
-    add MsgLen, 1
-    write hello_msg, msg, MsgLen
-          </pre>
-        </details>
-    
-        <details>
-          <summary>Jump Loops</summary>
-          <pre>
-    set str msg : "Hello";
-    set int count : 0;
-    set int count_end : 3;
-    
-    loop:
-    write msg, 5;
-    add count, 1;
-    compare count | count_end;
-    jmp end;
-    jmp loop;
-    
-    end:
-    set str msg : "end";
-    write msg, 3;
-          </pre>
-        </details>
-    
-        <details>
-          <summary>Simple Calculator</summary>
-          <pre>
-    // messages
-    set str MSG1 : "Select first number."
-    set str MSG2 : "Select second number."
-    set str MSG3 : "Select operator (+,-,*,/)"
-    
-    set int MSG1LEN : $ MSG1
-    set int MSG2LEN : $ MSG2
-    set int MSG3LEN : $ MSG3
-    
-    write MSG1, MSG1LEN
-    read num1
-    write MSG2, MSG2LEN
-    read num2
-    write MSG3, MSG3LEN
-    read op
-    
-    set int num1 : /num1
-    set int num2 : /num2
-    
-    compare op | "+"
-    jmp plus
-    compare op | "-"
-    jmp minus
-    compare op | "*"
-    jmp multiplication
-    compare op | "/"
-    jmp division
-    jmp end
-    
-    plus:
-        add num1, num2
-        jmp end
-    
-    minus:
-        sub num1, num2
-        jmp end
-    
-    multiplication:
-        mul num1, num2
-        jmp end
-    
-    division:
-        div num1, num2
-    
-    end:
-        set str output : /num1
-        set int len : $ output
-        write output, len
-          </pre>
-        </details>
-    
-      </details>
-    
-      <details>
-          <summary><strong><orange>File Management</orange></strong></summary>
-          <details>
-            <summary>Reading Files</summary>
-            <pre>
 // setting variable msg to text from file "text file.txt"
 set str msg : file("text file.txt")
 
@@ -187,31 +181,31 @@ set int MsgLen : $ msg
 sub MsgLen, 1
 
 write msg, MsgLen
-            </pre>
-          </details>
-          <details>
-            <summary>Making Files</summary>
-            <pre>
+</pre>
+</details>
+<details>
+<summary>Making Files</summary>
+<pre>
 // if file "folder/text file.txt" already exist then text in it will be changed
 set str text : "new text"
 file.new "folder/text file.txt" | text
-            </pre>
-          </details>
-          <details>
-            <summary>Adding New Line</summary>
-            <pre>
+</pre>
+</details>
+<details>
+<summary>Adding New Line</summary>
+<pre>
 // this code will add new line to file "cool file.py"
 set str text : "print('Hello, World!')"
 fileln "cool file.py" | text
-            </pre>
-          </details>
-      </details>
-    </section>  
-    <section id ="libraries">
-      <h3>Working With Libraries</h3>
-      <details>
-        <summary><strong><orange>Time</orange></strong></summary>
-          <pre>
+</pre>
+</details>
+</details>
+</section>
+<section id ="libraries">
+<h3>Working With Libraries</h3>
+<details>
+<summary><strong><orange>Time</orange></strong></summary>
+<pre>
 // imports time library
 import time
 
@@ -222,13 +216,13 @@ set str msg : "Hello"
 set int MsgLen : $ msg
 sub MsgLen, 1
 write msg, MsgLen
-          </pre>
-    </details>
-      <details>
-        <summary><strong><orange>OS</orange></strong></summary>
-          <details>
-            <summary>cls/clear</summary>
-            <pre>
+</pre>
+</details>
+<details>
+<summary><strong><orange>OS</orange></strong></summary>
+<details>
+<summary>cls/clear</summary>
+<pre>
 // importing os library
 import os
 
@@ -242,11 +236,11 @@ cls
 set str msg : "Hello 2"
 set int MsgLen : $ msg
 write msg, MsgLen
-            </pre>
-          </details>
-          <details>
-            <summary>Windows+Linux "clear screen" Command</summary>
-            <pre>
+</pre>
+</details>
+<details>
+<summary>Windows+Linux "clear screen" Command</summary>
+<pre>
 // importing os and platform libraries
 import os
 import platform
@@ -261,24 +255,24 @@ platform.system(clear screen)
 set str msg : "Hello 2"
 set int MsgLen : $ msg
 write msg, MsgLen
-            </pre>
-          </details>
-    </details>
-      <details>
-        <summary><strong><orange>CustomTkinter</orange></strong></summary>
-          <details>
-            <summary>Making A Window</summary>
-            <pre>
+</pre>
+</details>
+</details>
+<details>
+<summary><strong><orange>CustomTkinter</orange></strong></summary>
+<details>
+<summary>Making A Window</summary>
+<pre>
 import customtkinter
 
-//           width height       title 
+//           width height       title
 window.create(400 | 300, "My First ZAR GUI")
 window.mainloop
-            </pre>
-          </details>
-          <details>
-            <summary>Making Label</summary>
-            <pre>
+</pre>
+</details>
+<details>
+<summary>Making Label</summary>
+<pre>
 import customtkinter
 
 set int x : 200
@@ -291,11 +285,11 @@ window.create(400 | 400, "GUI Labels")
 label.create(1, x | y, msg)
 
 window.mainloop
-            </pre>
-          </details>
-          <details>
-            <summary>Changing Labels Text</summary>
-            <pre>
+</pre>
+</details>
+<details>
+<summary>Changing Labels Text</summary>
+<pre>
 import customtkinter
 // to use "label.change_after" you need to import time
 import time
@@ -313,16 +307,12 @@ label.change_after(1, msg2, 3)
 
 window.mainloop
 
-            </pre>
-          </details>
-    </details>
-    </section>
-  </main>
+</pre>  
+      </details>  
+</details>  
+</section>
 
-  <footer>
-    <p>&copy; 2025 Zar Language Project</p>
-  </footer>
-  
-  
-</body>
-</html>
+  </main>    <footer>  
+    <p>&copy; 2025 Zar Language Project</p>  
+  </footer>  </body>  
+</html>g
