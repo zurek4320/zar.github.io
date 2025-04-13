@@ -1,122 +1,56 @@
-body {
-  font-family: sans-serif;
-  margin: 0;
-  padding: 0;
-  background: #333333;
-  color: #f9f9f9;
-}
-
-header {
-  background: #f58a18;
-  padding: 1rem;
-  text-align: center;
-}
-
-header h1 {
-  margin: 0;
-  font-size: 2.5rem;
-  color: black;
-}
-
-nav {
-  background: #f0701b;
-  padding: 0.75rem 1rem;
-  margin-top: 10px;
-  text-align: center;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+body {  
+  font-family: sans-serif;  
+  margin: 0;  
+  padding: 0;  
+  background: #333333;  
+  color: #f9f9f9;  
+}  header {
+background: #f58a18;
+color: black;
+padding: 1rem;
+text-align: center;
 }
 
 nav a {
-  margin: 0 12px;
-  color: black;
-  text-decoration: none;
-  font-weight: bold;
-  transition: color 0.3s;
-}
-
-nav a:hover {
-  color: white;
+font-family: sans-serif;
+color: black;
+margin: 0 15px;
+text-decoration: none;
 }
 
 main {
-  padding: 2rem;
-  max-width: 900px;
-  margin: auto;
+padding: 2rem;
 }
 
 section {
-  margin-top: 3rem;
-}
-
-h2, h3 {
-  color: #f58a18;
-}
-
-.button {
-  background: #f58a18;
-  color: #121212;
-  padding: 10px 20px;
-  text-decoration: none;
-  font-weight: bold;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-  transition: background 0.3s, transform 0.2s;
-  display: inline-block;
-}
-
-.button:hover {
-  background: #ffa64d;
-  transform: translateY(-2px);
+margin-top: 2rem;
 }
 
 ul {
-  list-style: square;
-  padding-left: 20px;
+line-height: 1.6;
 }
 
-details summary {
-  cursor: pointer;
-  font-size: 1.1rem;
-  margin: 10px 0;
+.button {
+background: #f58a18;
+padding: 12px 20px;
+color: #000000;
+text-decoration: none;
+border-radius: 8px;
+display: inline-block;
+margin-top: 10px;
 }
 
 pre {
-  background: #1e1e1e;
-  padding: 1rem;
-  border-radius: 12px;
-  overflow-x: auto;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-  margin-top: 1rem;
-}
-
-.highlight {
-  color: #f58a18;
-}
-
-footer {
-  text-align: center;
-  padding: 1rem;
-  background: #222;
-  color: #ccc;
-  margin-top: 4rem;
-}
-
-@media (max-width: 600px) {
-  header h1 {
-    font-size: 2rem;
-  }
-
-  nav a {
-    display: block;
-    margin: 5px 0;
-  }
-
-  main {
-    padding: 1rem;
-  }
+background-color: #1e1e1e; /* dark background for contrast */
+padding: 1rem;
+border-radius: 12px;
+overflow-x: auto;
+font-family: monospace;
+color: #f1f1f1;
+margin-top: 1rem;
+box-shadow: 0 4px 8px rgba(0,0,0,0.3);
 }
 
 orange {
-    color: #ffb469;
+color: #f58a18
 }
