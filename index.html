@@ -113,59 +113,106 @@ write msg, 3;
     </details>  
   
     <details>  
-      <summary>Simple Calculator</summary>  
-      <pre>  
-// messages  
-set str MSG1 : "Select first number."  
-set str MSG2 : "Select second number."  
-set str MSG3 : "Select operator (+,-,*,/)"  
-  
-set int MSG1LEN : $ MSG1  
-set int MSG2LEN : $ MSG2  
-set int MSG3LEN : $ MSG3  
-  
-write MSG1, MSG1LEN  
-read num1  
-write MSG2, MSG2LEN  
-read num2  
-write MSG3, MSG3LEN  
-read op  
-  
-set int num1 : /num1  
-set int num2 : /num2  
-  
-compare op | "+"  
-jmp plus  
-compare op | "-"  
-jmp minus  
-compare op | "*"  
-jmp multiplication  
-compare op | "/"  
-jmp division  
-jmp end  
-  
-plus:  
-    add num1, num2  
-    jmp end  
-  
-minus:  
-    sub num1, num2  
-    jmp end  
-  
-multiplication:  
-    mul num1, num2  
-    jmp end  
-  
-division:  
-    div num1, num2  
-  
-end:  
-    set str output : /num1  
-    set int len : $ output  
-    write output, len  
+      <summary>Making Lists</summary>  
+      <pre>
+set list test_list : [item1, item2]
       </pre>  
     </details>  
   
+    <details>  
+      <summary>Checking Lists Lenght</summary>  
+      <pre>
+set list test_list : [1, 2]
+set int number : 2
+
+set str msg : "list is 2 items long!"
+set int MsgLen : $ msg
+
+// compares lenght of list "test_list" with int variable "number"
+// if lenght of the list (number of items) and int variable aren't the same
+// it will skip next line so only if len(test_list) == number program will print str variable "msg"
+compare.$list test_list | number
+write msg, MsgLen
+
+// numbers of items in lists starts from 0
+//    0      1
+// [item1, item2]
+      </pre>  
+    </details>  
+
+    <details>  
+      <summary>Checking Lists Items</summary>  
+      <pre>  
+set list test_list : ["item1", "cat", "item3"]
+set str item_name : "cat"
+
+set str msg : "2nd word in list 'test_list' is 'cat'!"
+set int MsgLen : $ msg
+
+// skips next line if 1st item from list "test_list" isn't equal to variable "item_name"
+//                list name item number    variable
+compare.list.item test_list,     1       | item_name
+write msg, MsgLen
+      </pre>  
+    </details>  
+  
+    <details>  
+      <summary>Adding Items To Lists</summary>  
+      <pre>  
+set list cool_list : ["item1", "item2"]
+set int ListLen : 3
+
+set str msg : "List lenght is 3!"
+set int MsgLen : $ msg
+
+// adding item "item3" to list "cool_list"
+list.push cool_list, "item3"
+compare.$list cool_list | ListLen
+write msg, MsgLen
+      </pre>  
+    </details>  
+  
+    <details>  
+      <summary>Deleting Items From Lists</summary>  
+      <pre>  
+set list cool_list : ["item1", "item2", "item3"]
+set int ListLen : 1
+
+set str msg : "List lenght is 1!"
+set int MsgLen : $ msg
+
+// deleting item "item3" from list "cool_list"
+list.pop cool_list, "item3"
+
+// deleting item with index 0 from list "cool_list"
+list.pop cool_list, 1
+
+compare.$list cool_list | ListLen
+write msg, MsgLen
+      </pre>  
+    </details>  
+
+    <details>  
+      <summary>Sub Items In Lists</summary>  
+      <pre>  
+set list test_list : [[1, 2], [3, 4]]
+set list sub_item : [1, 2]
+
+set str msg : "1st sub item in list is [1, 2]"
+set int MsgLen : $ msg
+
+compare.list.item test_list, 0 | sub_item
+write msg, MsgLen
+      </pre>  
+    </details>  
+  
+    <details>  
+      <summary>Printing Lists</summary>  
+      <pre>  
+set list CoolList : ["cat", "frog", "dog"]
+write.list CoolList
+      </pre>
+    </details>
   </details>  
   
   <details>  
@@ -197,6 +244,21 @@ file.new "folder/text file.txt" | text
 // this code will add new line to file "cool file.py"
 set str text : "print('Hello, World!')"
 fileln "cool file.py" | text
+</pre>
+</details>
+<details>
+<summary>Words Checking</summary>
+<pre>
+// if 2nd word in 3th line in file "test.txt" is "cat" program will print it else it will do nothing
+
+// variables
+set str msg : "2nd word in 3th line is 'cat'"
+set str is_equal : "cat"
+set int MsgLen : $ msg
+
+//                 file name   line column   if var == word
+file.words.compare test.txt  :  1     2    |   is_equal
+write msg, MsgLen
 </pre>
 </details>
 </details>
@@ -259,6 +321,72 @@ write msg, MsgLen
 </details>
 </details>
 <details>
+<summary><strong><orange>pymsgbox</orange></strong></summary>
+<details>
+<summary>Making Message Boxes</summary>
+<pre>
+import pymsgbox
+
+set str title : "Cool title"
+set str text : "Clever text!"
+
+pymsgbox.alert text | title
+</pre>  
+      </details>
+<details>
+<summary>Getting Input</summary>
+<pre>
+import pymsgbox
+
+set str Title : "Enter Something"
+set str Message : "Please type your name:"
+
+pymsgbox.prompt Title | Message | input
+
+set str title : "Hello!"
+set str text : "Hello "
+set str face : " :D"
+
+add text, input
+add text, face
+
+pymsgbox.alert text | title
+</pre>  
+      </details> 
+<details>
+<summary>OK/Cancel Boxes</summary>
+<pre>
+import pymsgbox
+
+set str Title : ">:3"
+set str Message : "Now Im gonna say 'cat' >:3"
+
+pymsgbox.confirm Title | Message | input
+
+compare input | "OK"
+jmp ok
+compare input | "Cancel"
+jmp cancel
+jmp end
+
+ok:
+    set str title : "cat"
+    set str text : "cat"
+
+    pymsgbox.alert text | title
+    jmp end
+cancel:
+    set str title : "why?"
+    set str text : ":("
+
+    pymsgbox.alert text | title
+    jmp end
+end:
+
+</pre>  
+      </details>
+</details>  
+<details>
 <summary><strong><orange>CustomTkinter</orange></strong></summary>
 <details>
 <summary>Making A Window</summary>
@@ -288,7 +416,7 @@ window.mainloop
 </pre>
 </details>
 <details>
-<summary>Changing Labels Text</summary>
+<summary>Changing Texts Of Labels</summary>
 <pre>
 import customtkinter
 // to use "label.change_after" you need to import time
@@ -309,7 +437,7 @@ window.mainloop
 
 </pre>  
       </details>  
-</details>  
+</details>
 </section>
 
   </main>    <footer>  
